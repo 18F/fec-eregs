@@ -21,14 +21,37 @@ after_deploy:
 
 # This does not handle zero-downtime deployments
 deploy:
-  edge: true
-  provider: cloudfoundry
-  username: fec_deployer
-  password:
-    secure: "b80cT6KZIxfwt5KkhNQKsKSCX6v2s97H+JR6cJ/sZtJ9KFB+P2HJ2ievVYAgtZcfkGVKLpcryxio1WyliXVpJLtQK9srfL///M1fZans2GvYdLcJ/Cc+KDXDUxKMzCdX4tt4mbHutt1Kfeyz0cCD3xrjny+g6r+7/SnerHs+zYZKufSk2FN6S0ylsxgiHxyd7I0YkcO540vLONISVZELjc28b5pfUlheKNxNwfesBhRnlsE3ArWFlqrexVvOU8Gc1lRBQm6Ks3bbR46MNzaoJIIZd/xSIgeoY96ZFROdEQUYRH5O08deBKS9SYvlVWBTmhwEDylT10DIyxaotSATnDVuvXvH86vm2TNKoDFC+dNNj9hM64AaKMN2a5IA8shRip8LQ1IoO7o7VMeS38z6EGphKb5W/HaeyOJRZnAPxPFmjOoBukpK+Rav9gphz+dpwJrXnHrntIi7yGRf9i3qOFfGh82qXAw81cJCZ7GKeN31qo8IblBxux9BfERZPR37fJGiaP4JW3hVS//MyhBWIUL80YZD6TJSdxxUEP+vAOe05EDgkpehpZxMCDVR4REUFNb4eB8u1THGujxkatglkz32cXGbCRCIfLG8CzBGZDUvMcKyla11ulWsT8HoO3wrtc6BzMDRrQappmtpi0wrlfx50avqDO+zDp5wB0wi1VU="
-  api: https://api.cloud.gov
-  organization: fec
-  space: dev
-  manifest: manifest.dev.yml
-  on:
-    branch: master
+  - edge: true
+    provider: cloudfoundry
+    username: fec_deployer
+    password:
+      secure: "b80cT6KZIxfwt5KkhNQKsKSCX6v2s97H+JR6cJ/sZtJ9KFB+P2HJ2ievVYAgtZcfkGVKLpcryxio1WyliXVpJLtQK9srfL///M1fZans2GvYdLcJ/Cc+KDXDUxKMzCdX4tt4mbHutt1Kfeyz0cCD3xrjny+g6r+7/SnerHs+zYZKufSk2FN6S0ylsxgiHxyd7I0YkcO540vLONISVZELjc28b5pfUlheKNxNwfesBhRnlsE3ArWFlqrexVvOU8Gc1lRBQm6Ks3bbR46MNzaoJIIZd/xSIgeoY96ZFROdEQUYRH5O08deBKS9SYvlVWBTmhwEDylT10DIyxaotSATnDVuvXvH86vm2TNKoDFC+dNNj9hM64AaKMN2a5IA8shRip8LQ1IoO7o7VMeS38z6EGphKb5W/HaeyOJRZnAPxPFmjOoBukpK+Rav9gphz+dpwJrXnHrntIi7yGRf9i3qOFfGh82qXAw81cJCZ7GKeN31qo8IblBxux9BfERZPR37fJGiaP4JW3hVS//MyhBWIUL80YZD6TJSdxxUEP+vAOe05EDgkpehpZxMCDVR4REUFNb4eB8u1THGujxkatglkz32cXGbCRCIfLG8CzBGZDUvMcKyla11ulWsT8HoO3wrtc6BzMDRrQappmtpi0wrlfx50avqDO+zDp5wB0wi1VU="
+    api: https://api.cloud.gov
+    organization: fec
+    space: prod
+    manifest: manifest.prod.yml
+    on:
+      tags: true
+      condition: $TRAVIS_BRANCH == master
+  - edge: true
+    provider: cloudfoundry
+    username: fec_deployer
+    password:
+      secure: "b80cT6KZIxfwt5KkhNQKsKSCX6v2s97H+JR6cJ/sZtJ9KFB+P2HJ2ievVYAgtZcfkGVKLpcryxio1WyliXVpJLtQK9srfL///M1fZans2GvYdLcJ/Cc+KDXDUxKMzCdX4tt4mbHutt1Kfeyz0cCD3xrjny+g6r+7/SnerHs+zYZKufSk2FN6S0ylsxgiHxyd7I0YkcO540vLONISVZELjc28b5pfUlheKNxNwfesBhRnlsE3ArWFlqrexVvOU8Gc1lRBQm6Ks3bbR46MNzaoJIIZd/xSIgeoY96ZFROdEQUYRH5O08deBKS9SYvlVWBTmhwEDylT10DIyxaotSATnDVuvXvH86vm2TNKoDFC+dNNj9hM64AaKMN2a5IA8shRip8LQ1IoO7o7VMeS38z6EGphKb5W/HaeyOJRZnAPxPFmjOoBukpK+Rav9gphz+dpwJrXnHrntIi7yGRf9i3qOFfGh82qXAw81cJCZ7GKeN31qo8IblBxux9BfERZPR37fJGiaP4JW3hVS//MyhBWIUL80YZD6TJSdxxUEP+vAOe05EDgkpehpZxMCDVR4REUFNb4eB8u1THGujxkatglkz32cXGbCRCIfLG8CzBGZDUvMcKyla11ulWsT8HoO3wrtc6BzMDRrQappmtpi0wrlfx50avqDO+zDp5wB0wi1VU="
+    api: https://api.cloud.gov
+    organization: fec
+    space: stage
+    manifest: manifest.stage.yml
+    on:
+      branch: release/*
+  - edge: true
+    provider: cloudfoundry
+    username: fec_deployer
+    password:
+      secure: "b80cT6KZIxfwt5KkhNQKsKSCX6v2s97H+JR6cJ/sZtJ9KFB+P2HJ2ievVYAgtZcfkGVKLpcryxio1WyliXVpJLtQK9srfL///M1fZans2GvYdLcJ/Cc+KDXDUxKMzCdX4tt4mbHutt1Kfeyz0cCD3xrjny+g6r+7/SnerHs+zYZKufSk2FN6S0ylsxgiHxyd7I0YkcO540vLONISVZELjc28b5pfUlheKNxNwfesBhRnlsE3ArWFlqrexVvOU8Gc1lRBQm6Ks3bbR46MNzaoJIIZd/xSIgeoY96ZFROdEQUYRH5O08deBKS9SYvlVWBTmhwEDylT10DIyxaotSATnDVuvXvH86vm2TNKoDFC+dNNj9hM64AaKMN2a5IA8shRip8LQ1IoO7o7VMeS38z6EGphKb5W/HaeyOJRZnAPxPFmjOoBukpK+Rav9gphz+dpwJrXnHrntIi7yGRf9i3qOFfGh82qXAw81cJCZ7GKeN31qo8IblBxux9BfERZPR37fJGiaP4JW3hVS//MyhBWIUL80YZD6TJSdxxUEP+vAOe05EDgkpehpZxMCDVR4REUFNb4eB8u1THGujxkatglkz32cXGbCRCIfLG8CzBGZDUvMcKyla11ulWsT8HoO3wrtc6BzMDRrQappmtpi0wrlfx50avqDO+zDp5wB0wi1VU="
+    api: https://api.cloud.gov
+    organization: fec
+    space: dev
+    manifest: manifest.dev.yml
+    on:
+      branch: develop
