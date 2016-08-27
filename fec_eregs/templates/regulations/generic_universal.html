@@ -8,20 +8,22 @@
 
 <div class="landing-content">
   {% block hero %} {% endblock %}
-<div class="usa-width-one-fourth search-panel">
-    <div class="container">
-      <div class="u-padding-left u-padding--right">
-          <div class="search-header">Search regulations</div>
-          <form action="{{ FEC_WEB_URL }}/legal/search/regulations/" method="GET" role="search">
+<div id="filters" class="filters is-open">
+    <div class="filters__header js-filter-toggle">Search regulations</div>
+    <div class="filters__content">
+      <form action="{{ FEC_WEB_URL }}/legal/search/regulations/" method="GET" role="search">
+        <div class="filters__inner">
+          <div class="filter">
+            <label class="label" for="search-regs">Search terms</label>
             <div class="combo--search--mini">
-              <label class="label t-left-aligned" for="search-regs">Terms</label>
               <input id="search-regs" name="search" class="combo__input" type="text" title="Search term"/>
               <input type="hidden" name="search_type" id="version-hidden" title="Search Type" value="regulations"/>
               <button class="combo__button button--search button--standard" type="submit"/>
                 <span class="u-visually-hidden">Search</span></button>
             </div>
-          </form>
+          </div>
         </div>
+      </form>
     </div>
 </div>
 <div class="usa-width-three-fourths" role="main">
